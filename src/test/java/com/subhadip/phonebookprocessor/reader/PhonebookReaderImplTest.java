@@ -16,6 +16,8 @@
  *******************************************************************************/
 package com.subhadip.phonebookprocessor.reader;
 
+import static org.junit.Assert.*;
+
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Map;
@@ -40,6 +42,17 @@ public class PhonebookReaderImplTest {
 		Set<String> manadatoryParams = new HashSet<>();
 		manadatoryParams.add("Name");
 		Collection<Map<String, String>> resultMaps = phonebookReader.readPhonebook("src/test/data/googleContacts.csv", "utf-16", ",", manadatoryParams);
+		assertEquals("Returned collection size is not matching", 8, resultMaps.size());
+		
+		for (Map<String, String> eachMap : resultMaps) {
+			assertFalse("Mandatory param name is null", null == eachMap.get("Name"));
+			assertFalse("Mandatory param name is empty", null != eachMap.get("Name") && eachMap.get("Name").toString().isEmpty());
+			
+			if ("abc4 cdm4".equals(eachMap.get("Name"))) {
+				assertEquals("Phone number not matching", "1256487793", eachMap.get("Phone 1 - Value"));
+				assertEquals("Email not matching", "abc2@email.com", eachMap.get("E-mail 1 - Value"));
+			}
+		}
 		System.out.printf("Returned collection size: %d", resultMaps.size());
 	}
 

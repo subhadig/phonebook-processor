@@ -28,7 +28,7 @@ import org.junit.Test;
 
 import com.subhadip.phonebookprocessor.logger.TestLogger;
 
-public class PhonebookReaderImplTest {
+public class CsvPhonebookReaderImplTest {
 
 	private PhonebookReader phonebookReader = new CsvPhonebookReaderImpl(); 
 	

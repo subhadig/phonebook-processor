@@ -24,12 +24,18 @@ import java.util.Map;
 import java.util.Set;
 
 import org.junit.BeforeClass;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
+import com.subhadip.phonebookprocessor.exception.PhonebookProcessorException;
 import com.subhadip.phonebookprocessor.logger.TestLogger;
 
 public class CsvPhonebookReaderImplTest {
 
+	@Rule
+	public ExpectedException thrown = ExpectedException.none(); 
+	
 	private PhonebookReader phonebookReader = new CsvPhonebookReaderImpl(); 
 	
 	@BeforeClass
@@ -56,4 +62,11 @@ public class CsvPhonebookReaderImplTest {
 		System.out.printf("Returned collection size: %d", resultMaps.size());
 	}
 
+	@Test
+	public void testFileNotFoundException() {
+		thrown.expect(PhonebookProcessorException.class);
+		thrown.expectMessage("The file with the specified location(src/test/data/googleContacts.csv1) not found");
+		phonebookReader.readPhonebook("src/test/data/googleContacts.csv1", "utf-16", ",", null);
+	}
+	
 }

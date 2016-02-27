@@ -30,7 +30,7 @@ public class VcardPhonebookReaderImplTest extends AbstractTest {
 		assertEquals("Number of expected contacts not matching", 2, result.size());
 		Map<String, String> firstContact = result.iterator().next();
 		assertEquals("StructuredName not matching", "Abhishek RC", firstContact.get("StructuredName"));
-		assertEquals("Telephone not matching", "9230026685", firstContact.get("Telephone")); 
+		assertEquals("Telephone not matching", "1234567890", firstContact.get("Telephone")); 
 	}
 
 	@Test

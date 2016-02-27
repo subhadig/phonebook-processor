@@ -24,18 +24,14 @@ import java.util.Map;
 import java.util.Set;
 
 import org.junit.BeforeClass;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
+import com.subhadip.phonebookprocessor.AbstractTest;
 import com.subhadip.phonebookprocessor.exception.PhonebookProcessorException;
 import com.subhadip.phonebookprocessor.logger.TestLogger;
 
-public class CsvPhonebookReaderImplTest {
+public class CsvPhonebookReaderImplTest extends AbstractTest {
 
-	@Rule
-	public ExpectedException thrown = ExpectedException.none(); 
-	
 	private PhonebookReader phonebookReader = new CsvPhonebookReaderImpl(); 
 	
 	@BeforeClass
